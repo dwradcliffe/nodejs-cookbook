@@ -59,6 +59,7 @@ bash "compile node.js (on #{make_threads} cpu)" do
     make -j #{make_threads}
   EOH
   creates "/usr/local/src/node-v#{node['nodejs']['version']}/node"
+  not_if { ::File.exists?("/usr/local/src/node-v#{node['nodejs']['version']}/node") }
 end
 
 execute "nodejs make install" do
